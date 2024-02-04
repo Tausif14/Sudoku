@@ -1,0 +1,345 @@
+:root {
+    font-size: 100%;
+    --clr-border: #1d1d1d;
+    --clr-input: #4882e0;
+    --clr-fog: #afafaf;
+    --clr-nofog: transparent;
+    --clr-outline: #57a5ff;
+    --clr-zipper: #cdb2ed;
+    --clr-gwhisper: #68f068;
+    --size-outline: 1vmin;
+    --size-lines: 5px;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: system-ui, sans-serif;
+  }
+  h1,
+  h2 {
+    text-align: center;
+  }
+  .stack {
+    display: grid;
+    gap: 1rem;
+  }
+  .instructions {
+    max-width: 60ch;
+    margin: auto;
+    padding: 0 2rem;
+  
+    & li {
+      text-wrap: pretty;
+      line-height: 1.5;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  .links {
+    margin: auto;
+    text-align: center;
+  
+    & ul {
+      list-style: none;
+      line-height: 1.5;
+    }
+  }
+  
+  .game,
+  .box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border: 1px solid var(--clr-border, #000);
+  }
+  .game {
+    width: clamp(280px, 100%, 90vmin);
+    cursor: pointer;
+    position: relative;
+    --unit-offset: calc(100% / 3 / 3 / 2);
+    margin: auto;
+  
+    & .lines {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+  
+      & * {
+        position: absolute;
+        border-style: solid;
+        border-radius: 9in;
+      }
+      & .z {
+        border-color: var(--clr-zipper, fuscia);
+      }
+      & .gw {
+        border-color: var(--clr-gwhisper, green);
+      }
+      & .h {
+        border-top-width: var(--size-lines, 1px);
+        border-bottom-width: var(--size-lines, 1px);
+  
+        &.r1 {
+          top: calc(var(--unit-offset) - var(--size-lines));
+        }
+        &.r2 {
+          top: calc(3 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r3 {
+          top: calc(5 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r4 {
+          top: calc(7 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r5 {
+          top: calc(9 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r6 {
+          top: calc(11 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r7 {
+          top: calc(13 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r8 {
+          top: calc(15 * var(--unit-offset) - var(--size-lines));
+        }
+        &.r9 {
+          top: calc(17 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s1 {
+          left: calc(var(--unit-offset) - var(--size-lines));
+        }
+        &.s2 {
+          left: calc(3 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s3 {
+          left: calc(5 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s4 {
+          left: calc(7 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s5 {
+          left: calc(9 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s6 {
+          left: calc(11 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s7 {
+          left: calc(13 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s8 {
+          left: calc(15 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s9 {
+          left: calc(17 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e2 {
+          right: calc(15 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e3 {
+          right: calc(13 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e4 {
+          right: calc(11 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e5 {
+          right: calc(9 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e6 {
+          right: calc(7 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e7 {
+          right: calc(5 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e8 {
+          right: calc(3 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e9 {
+          right: calc(var(--unit-offset) - var(--size-lines));
+        }
+      }
+      & .v {
+        border-left-width: var(--size-lines, 1px);
+        border-right-width: var(--size-lines, 1px);
+  
+        &.c1 {
+          left: calc(var(--unit-offset) - var(--size-lines));
+        }
+        &.c2 {
+          left: calc(3 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c3 {
+          left: calc(5 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c4 {
+          left: calc(7 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c5 {
+          left: calc(9 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c6 {
+          left: calc(11 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c7 {
+          left: calc(13 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c8 {
+          left: calc(15 * var(--unit-offset) - var(--size-lines));
+        }
+        &.c9 {
+          left: calc(17 * var(--unit-offset) - var(--size-lines));
+        }
+  
+        &.s1 {
+          top: calc(var(--unit-offset) - var(--size-lines));
+        }
+        &.s2 {
+          top: calc(3 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s3 {
+          top: calc(5 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s4 {
+          top: calc(7 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s5 {
+          top: calc(9 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s6 {
+          top: calc(11 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s7 {
+          top: calc(13 * var(--unit-offset) - var(--size-lines));
+        }
+        &.s8 {
+          top: calc(15 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e2 {
+          bottom: calc(15 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e3 {
+          bottom: calc(13 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e4 {
+          bottom: calc(11 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e5 {
+          bottom: calc(9 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e6 {
+          bottom: calc(7 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e7 {
+          bottom: calc(5 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e8 {
+          bottom: calc(3 * var(--unit-offset) - var(--size-lines));
+        }
+        &.e9 {
+          bottom: calc(var(--unit-offset) - var(--size-lines));
+        }
+      }
+    }
+  }
+  
+  .box {
+    width: 100%;
+  
+    & > * {
+      aspect-ratio: 1;
+      border: 0.5px solid var(--clr-border, #000);
+    }
+  }
+  input {
+    all: unset;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 5vmin;
+    color: var(--clr-input, blue);
+    background: var(--clr-fog, grey);
+    transition: background-color 500ms linear;
+    &[type="number"] {
+      -moz-appearance: textfield;
+  
+      &::-webkit-inner-spin-button,
+      ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  
+    &:focus {
+      outline: var(--size-outline, 1px) solid var(--clr-outline, blue);
+      outline-offset: calc(0px - var(--size-outline));
+    }
+  
+    &:valid:not(:placeholder-shown) {
+      background: var(--clr-nofog);
+    }
+  
+    &[type="checkbox"] {
+      display: block;
+    }
+  }
+  .results {
+    max-width: 60ch;
+    margin: auto;
+    display: grid;
+    gap: 1rem;
+    text-align: center;
+    padding-bottom: 1rem;
+  
+    & label {
+      background: var(--clr-input, blue);
+      color: #fff;
+      padding: 0.5em 1em;
+      border-radius: 9in;
+      display: block;
+      margin: auto;
+      width: max-content;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 1.25em;
+    }
+  
+    & .correct,
+    .incomplete,
+    .incorrect {
+      display: none;
+    }
+  }
+  
+  @for $r from 1 through 9 {
+    @for $c from 1 through 9 {
+      .game:has(.r#{$r}c#{$c}:valid:not(:placeholder-shown)) {
+        & [data-touches*="r#{$r}c#{$c}"] {
+          background: var(--clr-nofog);
+        }
+      }
+    }
+  }
+  
+  body:has(input:checked) {
+    /* puzzle not finished, show incomplete */
+    & .play:has(input:placeholder-shown) + .results .incomplete {
+      display: block;
+    }
+  
+    /* puzzle is complete show whether or not its correct */
+    & .play:not(:has(input:placeholder-shown)) {
+      /* incorrect solve */
+      &:has(input:not(:valid)) + .results .incorrect {
+        display: block;
+      }
+  
+      /* puzzle is correct! */
+      &:not(:has(input:not(:valid))) + .results .correct {
+        display: block;
+      }
+    }
+  }
+  
